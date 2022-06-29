@@ -13,18 +13,6 @@ pipeline{
                 git 'https://github.com/Sonal0409/DevOpsCodeDemo.git'
             }
         }
-        stage('Compile the code')
-        {
-            steps{
-                sh 'mvn compile'
-            }
-        }
-         stage('Review the code')
-        {
-            steps{
-                sh 'mvn pmd:pmd'
-            }
-        }
         stage('Testing')
         {
             steps{
@@ -36,10 +24,10 @@ pipeline{
                 }
             }
         }
-        stage ('Package')
+        stage ('Coverage')
         {
             steps{
-                sh 'mvn package'
+                sh 'mvn cobertura:cobertura -Dcobertura.report.format=xml'
             }
         }
     }
