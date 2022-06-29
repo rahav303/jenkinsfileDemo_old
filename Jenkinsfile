@@ -25,22 +25,6 @@ pipeline{
                 sh 'mvn pmd:pmd'
             }
         }
-        stage('Testing')
-        {
-            steps{
-               sh 'mvn test'
-            }
-            post{
-                success{
-                    junit 'target/surefire-reports/*.xml'
-                }
-            }
-        }
-        stage ('Package')
-        {
-            steps{
-                sh 'mvn package'
-            }
-        }
+      
     }
 }
